@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/thrusterFire_001.ogg-ada07eb29d7bad419f3c12607887942d.oggstr"
+
+[deps]
+
+source_file="res://TemporalAssets/kenney_sci-fi-sounds/Audio/thrusterFire_001.ogg"
+dest_files=[ "res://.import/thrusterFire_001.ogg-ada07eb29d7bad419f3c12607887942d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

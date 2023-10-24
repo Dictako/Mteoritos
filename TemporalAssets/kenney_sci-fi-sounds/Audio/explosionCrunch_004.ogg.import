@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/explosionCrunch_004.ogg-c68b6ec3f3c859bfabdf1d5a6a013768.oggstr"
+
+[deps]
+
+source_file="res://TemporalAssets/kenney_sci-fi-sounds/Audio/explosionCrunch_004.ogg"
+dest_files=[ "res://.import/explosionCrunch_004.ogg-c68b6ec3f3c859bfabdf1d5a6a013768.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
