@@ -11,6 +11,7 @@ export var danio_proyectil:int = 1
 onready var timer_enfriamiento:Timer = $TimerEnfriamiento
 onready var disparo_sfx:AudioStreamPlayer = $AudioDisparo
 onready var esta_enfriado: bool = true
+onready var puede_disparar: bool = false setget set_puede_disparar
 onready var esta_disparando: bool = false setget set_esta_disparando
 
 
@@ -20,6 +21,9 @@ var puntos_disparos: Array = []
 ##Setters y Getters
 func set_esta_disparando(disparando:bool) -> void:
 	esta_disparando = disparando
+	
+func set_puede_disparar(habilitado:bool) -> void:
+	puede_disparar = habilitado
 
 ##Metodos
 func _ready() -> void:
