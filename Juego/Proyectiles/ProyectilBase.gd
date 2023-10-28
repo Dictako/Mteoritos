@@ -20,4 +20,5 @@ func crear(pos: Vector2, dir:float, vel:int, danio_p:int) -> void:
 
 
 func _on_VisibilityNotifier2D_screen_exited() -> void:
+	
 	queue_free()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Juego/Proyectiles/CanionBase.gd" type="Script" id=1]
-[ext_resource path="res://Juego/Proyectiles/LaserPorDefecto.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Juego/Proyectiles/LaserPorDefecto.wav" type="AudioStream" id=2]
 [ext_resource path="res://Juego/Proyectiles/ProyectilBase.tscn" type="PackedScene" id=3]
 
 [node name="CanionBase" type="Node2D"]
