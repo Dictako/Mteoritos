@@ -93,8 +93,9 @@ func controaldor_de_estados(estado:int) -> void:
 			colisionador_cuerpo.set_deferred("disabled", false)
 		ESTADO.MUERTO:
 			colisionador_cuerpo.set_deferred("disabled", true)
-			canion.set_puede_disparar(true)
+			Eventos.emit_signal("destruir", global_position)
 			queue_free()
+			canion.set_puede_disparar(true)
 		ESTADO.INVENCIBLE:
 			colisionador_cuerpo.set_deferred("disabled", false)
 		_:
@@ -108,6 +109,8 @@ func esta_input_activo() -> bool:
 	return true
 	
 
+func me_muero() -> void:
+	controaldor_de_estados(ESTADO.MUERTO)
 
 
 func _on_AnimacionPersonaje_animation_finished(anim_name: String) -> void:
