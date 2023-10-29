@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/playerShip3_green.png-e917474f8de0ceabda47741f57f33696.stex"
+path="res://.import/laserGreenEnemigo.png-de9b483c867749f155cfaab4f4ec89dc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TemporalAssets/kenney_space-shooter-redux/PNG/playerShip3_green.png"
-dest_files=[ "res://.import/playerShip3_green.png-e917474f8de0ceabda47741f57f33696.stex" ]
+source_file="res://Juego/Proyectiles/laserGreenEnemigo.png"
+dest_files=[ "res://.import/laserGreenEnemigo.png-de9b483c867749f155cfaab4f4ec89dc.stex" ]
 
 [params]
 
