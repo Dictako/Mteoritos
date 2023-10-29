@@ -21,12 +21,11 @@ onready var laser:Laser = $LaserBeam2D
 onready var colisionador_cuerpo:CollisionShape2D = $ColisonadorCuerpo
 onready var estela:Estela = $PosicionInicialEstela/Estela
 onready var motor_ruido:AudioStreamPlayer = $MotorRuido
+onready var animacion:AnimationPlayer = $AnimacionPersonaje
 
 ##Metodos
 func _ready() -> void:
 	controaldor_de_estados(estado_actual)
-	controaldor_de_estados(ESTADO.VIVO)
-	
 	
 	
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
@@ -107,4 +106,10 @@ func esta_input_activo() -> bool:
 		return false
 		
 	return true
+	
 
+
+
+func _on_AnimacionPersonaje_animation_finished(anim_name: String) -> void:
+	if anim_name == "Spawn":
+		controaldor_de_estados(ESTADO.VIVO)

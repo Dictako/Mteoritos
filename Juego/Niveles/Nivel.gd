@@ -21,6 +21,5 @@ func crear_contededores() -> void:
 	contenedor_disparos.name = "ContenedorDisparo"
 	add_child(contenedor_disparos)
 
-
 func _on_disparando(proyectil: Proyectil) -> void:
 	add_child(proyectil)
