@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/IndicadorDanioAudio.ogg-686074992ada4d5882b02a9ad93717fa.oggstr"
+
+[deps]
+
+source_file="res://Juego/Naves/IndicadorDanioAudio.ogg"
+dest_files=[ "res://.import/IndicadorDanioAudio.ogg-686074992ada4d5882b02a9ad93717fa.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

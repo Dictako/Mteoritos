@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Juego/Naves/player_green.png" type="Texture" id=1]
 [ext_resource path="res://Juego/Naves/MaterialFisico.tres" type="PhysicsMaterial" id=2]
@@ -7,9 +7,26 @@
 [ext_resource path="res://Juego/Proyectiles/Laser/LaserBeam2D.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Juego/Naves/Trail/Trail2D.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Juego/Naves/MotorRuido.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Juego/Naves/IndicadorDanioAudio.wav" type="AudioStream" id=8]
+[ext_resource path="res://Juego/Naves/Escudo/Escudo.tscn" type="PackedScene" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 26.7967
+
+[sub_resource type="Animation" id=3]
+resource_name = "Recibir_danio"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.317647, 0.317647, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "Spawn"
@@ -27,6 +44,34 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0.4, 0.4 ), Vector2( 0.5, 0.5 ), Vector2( 0.4, 0.4 ), Vector2( 0.5, 0.5 ), Vector2( 0.4, 0.4 ), Vector2( 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=4]
+resource_name = "default"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ) ]
+}
+
 [node name="Player" type="RigidBody2D"]
 position = Vector2( -1.19055, 0 )
 z_index = 50
@@ -39,6 +84,7 @@ angular_damp = 10.0
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 0.317647, 0.317647, 1 )
 position = Vector2( 9.52441, 0 )
 rotation = 1.5708
 texture = ExtResource( 1 )
@@ -70,5 +116,15 @@ target_path = NodePath("")
 
 [node name="AnimacionPersonaje" type="AnimationPlayer" parent="."]
 autoplay = "Spawn"
+anims/Recibir_danio = SubResource( 3 )
 anims/Spawn = SubResource( 2 )
+anims/default = SubResource( 4 )
+
+[node name="IndicadorDanio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+bus = "SFX"
+
+[node name="Escudo" parent="." instance=ExtResource( 9 )]
 [connection signal="animation_finished" from="AnimacionPersonaje" to="." method="_on_AnimacionPersonaje_animation_finished"]
+
+[editable path="Escudo"]
