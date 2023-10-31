@@ -2,7 +2,7 @@ class_name Escudo
 extends Area2D
 
 ##Atributos onready
-onready var animacion: AnimationPlayer = $AnimationEscudo
+onready var animacion: AnimationPlayer = $Animation
 onready var colision:CollisionShape2D = $Colisonador
 
 ##Atributos Export
@@ -30,10 +30,10 @@ func get_esta_activo() -> bool:
 
 ##Metodos Customs
 func controlar_colisionador(esta_desactivado:bool) -> void:
-	colision.set_deferred("disabled", true)
+	colision.set_deferred("disabled", esta_desactivado)
 	
 func activar() -> void:
-	if energia <= 0.0:
+	if energia <= 0.0:	
 		return
 	
 	esta_activo = true
@@ -41,6 +41,7 @@ func activar() -> void:
 	animacion.play("Activandose")
 	
 func desactivar() -> void:
+	print("hola")
 	set_process(false)
 	esta_activo = false
 	controlar_colisionador(true)
@@ -50,3 +51,9 @@ func _on_AnimationEscudo_animation_finished(anim_name: String) -> void:
 	if anim_name == "Activandose" and esta_activo:
 		animacion.play("Activo")
 		set_process(true)
+		
+
+
+func _on_Escudo_area_entered(area: Area2D) -> void:
+	if area.has_method("destruir") and area is Proyectil:
+		area.destruir()

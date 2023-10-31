@@ -26,7 +26,8 @@ func crear(pos: Vector2, dir:float, vel:int, danio_p:int) -> void:
 	rotation = dir
 	velocidad = Vector2(vel, 0).rotated(dir)
 
-
+func destruir() -> void:
+	queue_free()
 
 func _on_VisibilityNotifier2D_screen_exited() -> void:
 	queue_free()
