@@ -11,6 +11,7 @@ export var estela_maxima:int = 150
 var empuje:Vector2 = Vector2.ZERO
 var dir_rotacion:int = 0
 var estado_actual:int = ESTADO.SPAWN
+var vida_maxima: float = 100.0
 
 ##Enum
 enum ESTADO {SPAWN,VIVO,MUERTO,INVENCIBLE}
@@ -18,9 +19,11 @@ enum ESTADO {SPAWN,VIVO,MUERTO,INVENCIBLE}
 ##Atributos onready
 onready var canion:Canion = $CanionBase
 onready var laser:Laser = $LaserBeam2D
+onready var escudo:Escudo = $Escudo
 onready var colisionador_cuerpo:CollisionShape2D = $ColisonadorCuerpo
 onready var estela:Estela = $PosicionInicialEstela/Estela
 onready var motor_ruido:AudioStreamPlayer = $MotorRuido
+onready var indicador_danio:AudioStreamPlayer = $IndicadorDanio
 onready var animacion:AnimationPlayer = $AnimacionPersonaje
 
 ##Metodos
@@ -52,6 +55,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 	if event.is_action_released("Mover_adelante"):
 		motor_ruido.sonido_off()
+	#Control Escudo
+	if event.is_action_pressed("activar_desactivar_escudo") and not escudo.get_esta_activo():
+		escudo.activar()
 
 
 func _process(delta: float) -> void:
@@ -116,3 +122,12 @@ func me_muero() -> void:
 func _on_AnimacionPersonaje_animation_finished(anim_name: String) -> void:
 	if anim_name == "Spawn":
 		controaldor_de_estados(ESTADO.VIVO)
+
+
+func recibir_danio(danio: int) -> void:
+	if danio > vida_maxima:
+		me_muero()
+	else:
+		animacion.play("Recibir_danio")
+		indicador_danio.play()
+		vida_maxima -= danio

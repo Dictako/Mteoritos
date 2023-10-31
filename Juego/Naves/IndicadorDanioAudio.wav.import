@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/IndicadorDanioAudio.wav-bf7ff81436a3c751e0e13d4d56270b91.sample"
+
+[deps]
+
+source_file="res://Juego/Naves/IndicadorDanioAudio.wav"
+dest_files=[ "res://.import/IndicadorDanioAudio.wav-bf7ff81436a3c751e0e13d4d56270b91.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
