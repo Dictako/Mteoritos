@@ -39,6 +39,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Naves/MotorRuido.gd"
 }, {
+"base": "RigidBody2D",
+"class": "Mteorito",
+"language": "GDScript",
+"path": "res://Juego/Mteoritos/Mteorito.gd"
+}, {
+"base": "Position2D",
+"class": "MteoritoSpawner",
+"language": "GDScript",
+"path": "res://Juego/Mteoritos/MteoritoSpawner.gd"
+}, {
 "base": "Node2D",
 "class": "Nivel",
 "language": "GDScript",
@@ -61,6 +71,8 @@ _global_script_class_icons={
 "Estela": "",
 "Laser": "",
 "Motor": "",
+"Mteorito": "",
+"MteoritoSpawner": "",
 "Nivel": "",
 "Player": "",
 "Proyectil": ""

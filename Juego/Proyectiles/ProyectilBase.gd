@@ -21,7 +21,7 @@ func daniar(otro_cuerpo: CollisionObject2D) ->void:
 
 
 ##Constructor
-func crear(pos: Vector2, dir:float, vel:int, danio_p:int) -> void:
+func crear(pos: Vector2, dir:float, vel:int, _danio_p:int) -> void:
 	position = pos
 	rotation = dir
 	velocidad = Vector2(vel, 0).rotated(dir)
