@@ -8,6 +8,7 @@ onready var contenedor_mteoritos: Node
 ##Atributos export
 export var explosion:PackedScene = null
 export var mteorito: PackedScene = null
+export var explosion_mteorito: PackedScene = null
 
 ##Metodos
 func _ready() -> void:
@@ -22,6 +23,7 @@ func conectar_seniales() -> void:
 	Eventos.connect("disparo", self, "_on_disparando")
 	Eventos.connect("destruir", self, "_on_destruir")
 	Eventos.connect("spawn_mteoritos", self, "_on_spawn_mteoritos")
+	Eventos.connect("mteorito_destruido", self, "_on_explosion_mteorito")
 	
 func crear_contededores() -> void:
 	contenedor_disparos = Node.new()
@@ -51,3 +53,8 @@ func _on_spawn_mteoritos(pos_spawn: Vector2, dir_mteorito:Vector2, tamanio: floa
 		tamanio
 		)
 	contenedor_mteoritos.add_child(new_mteorito)
+	
+func _on_explosion_mteorito(pos:Vector2) -> void:
+	var new_explosion_mteorito: ExplosionMteorito = explosion_mteorito.instance()
+	new_explosion_mteorito.global_position = pos
+	add_child(new_explosion_mteorito)

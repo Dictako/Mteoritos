@@ -1,36 +1,45 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Juego/Naves/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=2]
 [ext_resource path="res://default_env.tres" type="Environment" id=3]
 [ext_resource path="res://Juego/Explosiones/Explosion.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Juego/Enemigos/EnemigoDummy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Juego/Fondos/Negro.png" type="Texture" id=5]
 [ext_resource path="res://Juego/Mteoritos/Mteorito.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Juego/Mteoritos/MteoritoSpawner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Juego/Explosiones/ExplosionMteorito.tscn" type="PackedScene" id=8]
 
 [node name="NivelTest" type="Node2D"]
 rotation = -0.00604949
 script = ExtResource( 2 )
 explosion = ExtResource( 4 )
 mteorito = ExtResource( 6 )
+explosion_mteorito = ExtResource( 8 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 491.37, 335.139 )
+position = Vector2( 916.7, 85.4387 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
 
-[node name="EnemigoDummy" parent="." instance=ExtResource( 5 )]
-position = Vector2( 956.718, 345.498 )
-
 [node name="MteoritoSpawner" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1530.06, 621.44 )
+position = Vector2( 116.561, 192.433 )
 
 [node name="MteoritoSpawner3" parent="." instance=ExtResource( 7 )]
-position = Vector2( 652.347, 589.221 )
+position = Vector2( 142.848, 851.867 )
+direccion = Vector2( 1, -1 )
 
 [node name="MteoritoSpawner4" parent="." instance=ExtResource( 7 )]
-position = Vector2( 630.253, 905.27 )
+position = Vector2( 1760.62, 875.108 )
+direccion = Vector2( -1, -1 )
 
 [node name="MteoritoSpawner2" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1568.76, 897.493 )
+position = Vector2( 1758.19, 165.364 )
+direccion = Vector2( -1, 1 )
+
+[node name="Negro" type="Sprite" parent="."]
+position = Vector2( 694.276, 456.561 )
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )

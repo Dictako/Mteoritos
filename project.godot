@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Naves/Trail/Trail2D.gd"
 }, {
+"base": "Node2D",
+"class": "ExplosionMteorito",
+"language": "GDScript",
+"path": "res://Juego/Explosiones/ExplosionMteorito.gd"
+}, {
 "base": "RayCast2D",
 "class": "Laser",
 "language": "GDScript",
@@ -69,6 +74,7 @@ _global_script_class_icons={
 "Enemigo": "",
 "Escudo": "",
 "Estela": "",
+"ExplosionMteorito": "",
 "Laser": "",
 "Motor": "",
 "Mteorito": "",

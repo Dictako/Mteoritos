@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfx_shieldUp.ogg-180fab3646a63d336f329c8cb57df9bf.oggstr"
+
+[deps]
+
+source_file="res://Juego/TemporalAssets/kenney_space-shooter-redux/Bonus/sfx_shieldUp.ogg"
+dest_files=[ "res://.import/sfx_shieldUp.ogg-180fab3646a63d336f329c8cb57df9bf.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

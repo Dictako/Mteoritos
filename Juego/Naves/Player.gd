@@ -131,3 +131,9 @@ func recibir_danio(danio: int) -> void:
 		animacion.play("Recibir_danio")
 		indicador_danio.play()
 		vida_maxima -= danio
+
+
+func _on_Player_body_entered(body: Node) -> void:
+	if body is Mteorito:
+		body.destruirse()
+		me_muero()

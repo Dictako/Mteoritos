@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/spaceEngineSmall_002.ogg-ca81a33845d0c2409b83d4c45b547184.oggstr"
+
+[deps]
+
+source_file="res://Juego/TemporalAssets/kenney_sci-fi-sounds/Audio/spaceEngineSmall_002.ogg"
+dest_files=[ "res://.import/spaceEngineSmall_002.ogg-ca81a33845d0c2409b83d4c45b547184.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
