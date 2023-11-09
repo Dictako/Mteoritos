@@ -58,3 +58,9 @@ func _on_explosion_mteorito(pos:Vector2) -> void:
 	var new_explosion_mteorito: ExplosionMteorito = explosion_mteorito.instance()
 	new_explosion_mteorito.global_position = pos
 	add_child(new_explosion_mteorito)
+
+func _on_nave_sector_peligro(centrocam:Vector2, tipo_peligro:String, cant_peligro:int)-> void:
+	if tipo_peligro == "Mteoritos":
+		pass
+	elif tipo_peligro == "Enemigo":
+		pass
