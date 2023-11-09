@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Juego/Naves/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Juego/Mteoritos/Mteorito.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Juego/Mteoritos/SectorMteorito.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Juego/Explosiones/ExplosionMteorito.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Juego/Peligros/SectorDePeligro.tscn" type="PackedScene" id=9]
 
 [node name="NivelTest" type="Node2D"]
 rotation = -0.00604949
@@ -15,6 +16,7 @@ script = ExtResource( 2 )
 explosion = ExtResource( 4 )
 mteorito = ExtResource( 6 )
 explosion_mteorito = ExtResource( 8 )
+sector_mteoritos = ExtResource( 7 )
 
 [node name="Negro" type="Sprite" parent="."]
 visible = false
@@ -24,11 +26,18 @@ z_index = -100
 z_as_relative = false
 texture = ExtResource( 5 )
 
-[node name="SectorMteorito" parent="." instance=ExtResource( 7 )]
-position = Vector2( 953.44, 552.525 )
-
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 941.304, 574.949 )
+position = Vector2( 330.583, 620.998 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
+
+[node name="TiggerLluviaMteoritos" type="Node" parent="."]
+
+[node name="SectorDePeligro" parent="TiggerLluviaMteoritos" instance=ExtResource( 9 )]
+position = Vector2( 981.553, 523.302 )
+
+[node name="CamaraNivel" type="Camera2D" parent="."]
+position = Vector2( 969.744, 537.621 )
+
+[node name="TweenCamara" type="Tween" parent="."]

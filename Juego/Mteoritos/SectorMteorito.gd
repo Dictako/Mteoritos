@@ -63,3 +63,13 @@ func _on_FueraZonaArriba_body_entered(body: Node) -> void:
 
 func _on_FueraZonaAbajo_body_entered(body: Node) -> void:
 	body.set_esta_en_sector(false)
+
+
+##Constructor
+func crear(pos:Vector2, mteoritos: int) -> void:
+	global_position = pos
+	cantidad_mteoritos = mteoritos
+
+
+
+
