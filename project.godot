@@ -68,6 +68,11 @@ _global_script_classes=[ {
 "class": "Proyectil",
 "language": "GDScript",
 "path": "res://Juego/Proyectiles/ProyectilBase.gd"
+}, {
+"base": "Node2D",
+"class": "SectorMteorito",
+"language": "GDScript",
+"path": "res://Juego/Mteoritos/SectorMteorito.gd"
 } ]
 _global_script_class_icons={
 "Canion": "",
@@ -81,7 +86,8 @@ _global_script_class_icons={
 "MteoritoSpawner": "",
 "Nivel": "",
 "Player": "",
-"Proyectil": ""
+"Proyectil": "",
+"SectorMteorito": ""
 }
 
 [application]

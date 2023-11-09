@@ -24,10 +24,11 @@ z_index = -100
 z_as_relative = false
 texture = ExtResource( 5 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( -337.644, -167.215 )
-
 [node name="SectorMteorito" parent="." instance=ExtResource( 7 )]
+position = Vector2( 953.44, 552.525 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 941.304, 574.949 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
