@@ -18,13 +18,22 @@ enum ESTADO {SPAWN,VIVO,MUERTO,INVENCIBLE}
 
 ##Atributos onready
 onready var canion:Canion = $CanionBase
-onready var laser:Laser = $LaserBeam2D
-onready var escudo:Escudo = $Escudo
+onready var laser:Laser = $LaserBeam2D setget ,get_laser
+onready var escudo:Escudo = $Escudo setget ,get_escudo
 onready var colisionador_cuerpo:CollisionShape2D = $ColisonadorCuerpo
 onready var estela:Estela = $PosicionInicialEstela/Estela
 onready var motor_ruido:AudioStreamPlayer = $MotorRuido
 onready var indicador_danio:AudioStreamPlayer = $IndicadorDanio
 onready var animacion:AnimationPlayer = $AnimacionPersonaje
+
+
+
+##Setters & Getters
+func get_laser() -> Laser:
+	return laser
+
+func get_escudo() -> Escudo:
+	return escudo
 
 ##Metodos
 func _ready() -> void:

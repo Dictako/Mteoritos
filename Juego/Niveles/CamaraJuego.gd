@@ -23,7 +23,7 @@ func devolver_zoom_original() -> void:
 	
 
 func zoom_suavizado(nuevo_zoom_x, nuevo_zoom_y, tiempo) -> void:
-	$Tween.interpolate_property(
+	tween_zoom.interpolate_property(
 		self,
 		"zoom", 
 		zoom,
@@ -32,4 +32,4 @@ func zoom_suavizado(nuevo_zoom_x, nuevo_zoom_y, tiempo) -> void:
 		Tween.TRANS_LINEAR,
 		Tween.EASE_IN_OUT
 	)
-	$Tween.start()
+	tween_zoom.start()

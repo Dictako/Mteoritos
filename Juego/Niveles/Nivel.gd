@@ -6,6 +6,7 @@ onready var contenedor_disparos: Node
 onready var contenedor_mteoritos: Node
 onready var contenedor_sector_mteoritos: Node
 onready var camara_nivel:Camera2D = $CamaraNivel
+onready var camara_player:Camera2D = $Player/CamaraPlayer
 
 ##Atributos export
 export var explosion:PackedScene = null
@@ -76,11 +77,11 @@ func crear_sector_mteorito(centro_camara:Vector2, numero_peliro:int) -> void:
 	mteoritos_restantes = numero_peliro
 	var new_sector_mteorito: SectorMteorito = sector_mteoritos.instance()
 	new_sector_mteorito.global_position = centro_camara
-	camara_nivel.current = true
 	contenedor_sector_mteoritos.add_child(new_sector_mteorito)
-	$Player/CamaraPlayer.devolver_zoom_original()
+	camara_nivel.zoom = camara_player.zoom
+	camara_nivel.devolver_zoom_original()
 	transicion_camaras(
-		$Player/CamaraPlayer.global_position,
+		camara_player.global_position,
 		camara_nivel.global_position,
 		camara_nivel,
 		tiempo_transcision_camara * 10
@@ -89,11 +90,14 @@ func controlar_mteoritos_restantes() -> void:
 	mteoritos_restantes -= 1
 	if mteoritos_restantes == 0:
 		contenedor_sector_mteoritos.get_child(0).queue_free()
-		$Player/CamaraPlayer.set_puede_hacer_zoom(true)
+		camara_player.set_puede_hacer_zoom(true)
+		var zoom_actual = camara_player.zoom
+		camara_player.zoom = camara_nivel.zoom
+		camara_player.zoom_suavizado(zoom_actual.x, zoom_actual.y, 1.0)
 		transicion_camaras(
 			camara_nivel.global_position,
-			$Player/CamaraPlayer.global_position,
-			$Player/CamaraPlayer,
+			camara_player.global_position,
+			camara_player,
 			tiempo_transcision_camara * 10
 		)	
 	
