@@ -14,6 +14,7 @@ var puntos_vida: float = 10.0
 var esta_en_sector: bool = true setget set_esta_en_sector
 var pos_spawn_original:Vector2
 var vel_spawn_original:Vector2
+var esta_destruido: bool = false
 
 
 ##Metodos
@@ -52,7 +53,8 @@ func crear(pos:Vector2, dir:Vector2, tamanio:float) -> void:
 
 func recibir_danio(danio: float)-> void:
 	puntos_vida -= danio
-	if puntos_vida <= 0:
+	if puntos_vida <= 0 and not esta_destruido:
+		esta_destruido = true
 		destruirse()
 	impacto_sfx.play()
 

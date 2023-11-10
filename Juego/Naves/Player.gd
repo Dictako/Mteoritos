@@ -58,6 +58,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	#Control Escudo
 	if event.is_action_pressed("activar_desactivar_escudo") and not escudo.get_esta_activo():
 		escudo.activar()
+		
 
 
 func _process(_delta: float) -> void:
@@ -88,6 +89,7 @@ func player_input() -> void:
 		
 	if Input.is_action_just_released("Disparar"):
 		canion.set_esta_disparando(false)
+
 
 func controaldor_de_estados(estado:int) -> void:
 	match estado:
