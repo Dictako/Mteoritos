@@ -111,6 +111,7 @@ func controaldor_de_estados(estado:int) -> void:
 		ESTADO.MUERTO:
 			colisionador_cuerpo.set_deferred("disabled", true)
 			Eventos.emit_signal("destruir", global_position)
+			Eventos.emit_signal("nave_destruida", self, global_position, 3)
 			queue_free()
 			canion.set_puede_disparar(true)
 		ESTADO.INVENCIBLE:

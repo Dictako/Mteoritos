@@ -20,14 +20,6 @@ mteorito = ExtResource( 6 )
 explosion_mteorito = ExtResource( 8 )
 sector_mteoritos = ExtResource( 7 )
 
-[node name="Negro" type="Sprite" parent="."]
-visible = false
-position = Vector2( 694.276, 456.561 )
-scale = Vector2( 1000, 1000 )
-z_index = -100
-z_as_relative = false
-texture = ExtResource( 5 )
-
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 330.583, 620.998 )
 
@@ -49,4 +41,129 @@ script = ExtResource( 10 )
 
 [node name="EstacionRecarga" parent="." instance=ExtResource( 11 )]
 position = Vector2( 613.06, 586.374 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 256, 256 )
+
+[node name="Negro" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro2" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro3" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro4" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro5" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro6" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro7" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro8" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro9" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro10" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro11" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro12" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro13" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro14" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro15" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]
