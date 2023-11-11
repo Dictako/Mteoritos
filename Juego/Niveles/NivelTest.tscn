@@ -31,6 +31,12 @@ environment = ExtResource( 3 )
 [node name="SectorDePeligro" parent="TiggerLluviaMteoritos" instance=ExtResource( 9 )]
 position = Vector2( 981.553, 523.302 )
 
+[node name="ContenedorEstaciones" type="Node" parent="."]
+
+[node name="EstacionRecarga" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
+position = Vector2( 616.596, 582.655 )
+rotation = -0.00604949
+
 [node name="CamaraNivel" type="Camera2D" parent="."]
 position = Vector2( 969.744, 537.621 )
 script = ExtResource( 10 )
@@ -39,10 +45,8 @@ script = ExtResource( 10 )
 
 [node name="TweenCamara" type="Tween" parent="."]
 
-[node name="EstacionRecarga" parent="." instance=ExtResource( 11 )]
-position = Vector2( 613.06, 586.374 )
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2( 256, 256 )
