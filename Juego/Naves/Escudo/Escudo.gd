@@ -33,7 +33,7 @@ func controlar_colisionador(esta_desactivado:bool) -> void:
 
 
 func controlar_energia(consumo:float) -> void:
-	energia + consumo
+	energia += consumo
 	if energia > energia_original:
 		energia = energia_original
 	elif energia <= 0.0:

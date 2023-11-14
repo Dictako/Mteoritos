@@ -9,7 +9,7 @@
 [ext_resource path="res://Juego/Mteoritos/SectorMteorito.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Juego/Explosiones/ExplosionMteorito.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Juego/Peligros/SectorDePeligro.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Juego/Niveles/CamaraJuego.gd" type="Script" id=10]
+[ext_resource path="res://CamaraNivel.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Juego/Estacion Espacial/EstacionRecarga.tscn" type="PackedScene" id=11]
 
 [node name="NivelTest" type="Node2D"]
@@ -20,11 +20,11 @@ mteorito = ExtResource( 6 )
 explosion_mteorito = ExtResource( 8 )
 sector_mteoritos = ExtResource( 7 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 330.583, 620.998 )
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 321.512, 526.749 )
 
 [node name="TiggerLluviaMteoritos" type="Node" parent="."]
 
@@ -36,12 +36,10 @@ position = Vector2( 981.553, 523.302 )
 [node name="EstacionRecarga" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
 position = Vector2( 616.596, 582.655 )
 rotation = -0.00604949
+energia = 6.0
+radio_energia_entregada = 0.05
 
-[node name="CamaraNivel" type="Camera2D" parent="."]
-position = Vector2( 969.744, 537.621 )
-script = ExtResource( 10 )
-
-[node name="TweenZoom" type="Tween" parent="CamaraNivel"]
+[node name="CamaraNivel" parent="." instance=ExtResource( 10 )]
 
 [node name="TweenCamara" type="Tween" parent="."]
 

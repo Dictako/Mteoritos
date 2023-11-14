@@ -18,7 +18,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not puede_recargar(event):
 		return
 	
-	controlar_energia()
+	controlar_energia(radio_energia_entregada)
 	
 	if event.is_action_pressed("recargar_escudo"):
 		nave_player.get_escudo().controlar_energia(radio_energia_entregada)
@@ -35,7 +35,7 @@ func puede_recargar(event: InputEvent) -> bool:
 	
 	return false
 
-func controlar_energia(consumo:float)-> void:
+func controlar_energia(_consumo:float)-> void:
 	energia -= radio_energia_entregada
 	if energia <= 0.0:
 		$VacioSfx.play()

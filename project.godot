@@ -69,12 +69,17 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Mteoritos/MteoritoSpawner.gd"
 }, {
+"base": "RigidBody2D",
+"class": "NaveBase",
+"language": "GDScript",
+"path": "res://Juego/Naves/NaveBase.gd"
+}, {
 "base": "Node2D",
 "class": "Nivel",
 "language": "GDScript",
 "path": "res://Juego/Niveles/Nivel.gd"
 }, {
-"base": "RigidBody2D",
+"base": "NaveBase",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Juego/Naves/Player.gd"
@@ -102,6 +107,7 @@ _global_script_class_icons={
 "Motor": "",
 "Mteorito": "",
 "MteoritoSpawner": "",
+"NaveBase": "",
 "Nivel": "",
 "Player": "",
 "Proyectil": "",

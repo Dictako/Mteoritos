@@ -6,7 +6,7 @@ export var numero_peligros: int = 10
 
 
 ##Señales Internas
-func _on_SectorDePeligro_body_entered(body: Node) -> void:
+func _on_SectorDePeligro_body_entered(_body: Node) -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
 	yield(get_tree().create_timer(0.1), "timeout")
 	enviar_seniales()

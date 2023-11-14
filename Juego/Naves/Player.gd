@@ -1,32 +1,20 @@
 class_name Player
-extends RigidBody2D
+extends NaveBase
 
 
 ##Atributos export
-export var potencia_motor:int = 20
+export var potencia_motor:int = 18
 export var potencia_rotacion:int = 280 
 export var estela_maxima:int = 150
-
-##Atributos simples
+##Atributos
 var empuje:Vector2 = Vector2.ZERO
 var dir_rotacion:int = 0
-var estado_actual:int = ESTADO.SPAWN
-var vida_maxima: float = 100.0
-
-##Enum
-enum ESTADO {SPAWN,VIVO,MUERTO,INVENCIBLE}
-
 ##Atributos onready
-onready var canion:Canion = $CanionBase
-onready var laser:Laser = $LaserBeam2D setget ,get_laser
 onready var escudo:Escudo = $Escudo setget ,get_escudo
-onready var colisionador_cuerpo:CollisionShape2D = $ColisonadorCuerpo
+onready var laser:Laser = $LaserBeam2D setget ,get_laser
 onready var estela:Estela = $PosicionInicialEstela/Estela
-onready var motor_ruido:AudioStreamPlayer = $MotorRuido
-onready var indicador_danio:AudioStreamPlayer = $IndicadorDanio
+onready var motor_ruido: Motor = $MotorRuido
 onready var animacion:AnimationPlayer = $AnimacionPersonaje
-
-
 
 ##Setters & Getters
 func get_laser() -> Laser:
@@ -36,15 +24,6 @@ func get_escudo() -> Escudo:
 	return escudo
 
 ##Metodos
-func _ready() -> void:
-	controaldor_de_estados(estado_actual)
-	
-	
-func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
-	apply_torque_impulse(dir_rotacion * potencia_rotacion)
-	apply_central_impulse(empuje.rotated(rotation))
-	
-
 func _unhandled_input(event: InputEvent) -> void:
 	if not esta_input_activo():
 		return
@@ -67,13 +46,16 @@ func _unhandled_input(event: InputEvent) -> void:
 	#Control Escudo
 	if event.is_action_pressed("activar_desactivar_escudo") and not escudo.get_esta_activo():
 		escudo.activar()
-		
+
+func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
+	apply_torque_impulse(dir_rotacion * potencia_rotacion)
+	apply_central_impulse(empuje.rotated(rotation))
 
 
 func _process(_delta: float) -> void:
 	player_input()
 
-##Metodos Custom	
+##Metodos Customs
 func player_input() -> void:
 	if not esta_input_activo():
 		return
@@ -100,52 +82,13 @@ func player_input() -> void:
 		canion.set_esta_disparando(false)
 
 
-func controaldor_de_estados(estado:int) -> void:
-	match estado:
-		ESTADO.SPAWN:
-			colisionador_cuerpo.set_deferred("disabled", true)
-			canion.set_puede_disparar(false)
-		ESTADO.VIVO:
-			canion.set_puede_disparar(true)
-			colisionador_cuerpo.set_deferred("disabled", false)
-		ESTADO.MUERTO:
-			colisionador_cuerpo.set_deferred("disabled", true)
-			Eventos.emit_signal("destruir", global_position)
-			Eventos.emit_signal("nave_destruida", self, global_position, 3)
-			queue_free()
-			canion.set_puede_disparar(false)
-		ESTADO.INVENCIBLE:
-			colisionador_cuerpo.set_deferred("disabled", false)
-		_:
-			pass
-	estado_actual = estado
-
+	
 func esta_input_activo() -> bool:
 	if estado_actual in [ESTADO.MUERTO, ESTADO.SPAWN]:
 		return false
 		
 	return true
-	
 
-func me_muero() -> void:
-	controaldor_de_estados(ESTADO.MUERTO)
+func recibir_danio(_danio: int) -> void:
+	animacion.play("Recibir_danio")
 
-
-func _on_AnimacionPersonaje_animation_finished(anim_name: String) -> void:
-	if anim_name == "Spawn":
-		controaldor_de_estados(ESTADO.VIVO)
-
-
-func recibir_danio(danio: int) -> void:
-	if danio > vida_maxima:
-		me_muero()
-	else:
-		animacion.play("Recibir_danio")
-		indicador_danio.play()
-		vida_maxima -= danio
-
-
-func _on_Player_body_entered(body: Node) -> void:
-	if body is Mteorito:
-		body.destruirse()
-		me_muero()
