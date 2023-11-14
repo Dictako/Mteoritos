@@ -1,21 +1,171 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Juego/Naves/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=2]
 [ext_resource path="res://default_env.tres" type="Environment" id=3]
 [ext_resource path="res://Juego/Explosiones/Explosion.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Juego/Enemigos/EnemigoDummy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Juego/Fondos/Negro.png" type="Texture" id=5]
+[ext_resource path="res://Juego/Mteoritos/Mteorito.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Juego/Mteoritos/SectorMteorito.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Juego/Explosiones/ExplosionMteorito.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Juego/Peligros/SectorDePeligro.tscn" type="PackedScene" id=9]
+[ext_resource path="res://CamaraNivel.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Juego/Estacion Espacial/EstacionRecarga.tscn" type="PackedScene" id=11]
 
 [node name="NivelTest" type="Node2D"]
 rotation = -0.00604949
 script = ExtResource( 2 )
 explosion = ExtResource( 4 )
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 491.37, 335.139 )
+mteorito = ExtResource( 6 )
+explosion_mteorito = ExtResource( 8 )
+sector_mteoritos = ExtResource( 7 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
 
-[node name="EnemigoDummy" parent="." instance=ExtResource( 5 )]
-position = Vector2( 956.718, 345.498 )
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 321.512, 526.749 )
+
+[node name="TiggerLluviaMteoritos" type="Node" parent="."]
+
+[node name="SectorDePeligro" parent="TiggerLluviaMteoritos" instance=ExtResource( 9 )]
+position = Vector2( 981.553, 523.302 )
+
+[node name="ContenedorEstaciones" type="Node" parent="."]
+
+[node name="EstacionRecarga" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
+position = Vector2( 616.596, 582.655 )
+rotation = -0.00604949
+energia = 6.0
+radio_energia_entregada = 0.05
+
+[node name="CamaraNivel" parent="." instance=ExtResource( 10 )]
+
+[node name="TweenCamara" type="Tween" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 256, 256 )
+
+[node name="Negro" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro2" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro3" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro4" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro5" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro6" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro7" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro8" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro9" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro10" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro11" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro12" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro13" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro14" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Negro15" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 697.025, 452.353 )
+rotation = -0.00604949
+scale = Vector2( 1000, 1000 )
+z_index = -100
+z_as_relative = false
+texture = ExtResource( 5 )
+[connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]

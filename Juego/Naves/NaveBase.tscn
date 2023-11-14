@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Juego/Naves/NaveBase.gd" type="Script" id=3]
+[ext_resource path="res://Juego/Proyectiles/CanionBase.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Juego/Naves/IndicadorDanioAudio.wav" type="AudioStream" id=8]
+
+[node name="NaveBase" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 0.317647, 0.317647, 1 )
+position = Vector2( 9.52441, 0 )
+scale = Vector2( 1e-05, 1e-05 )
+
+[node name="ColisonadorCuerpo" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 0.396847 )
+
+[node name="CanionBase" parent="." instance=ExtResource( 4 )]
+
+[node name="IndicadorDanio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+bus = "SFX"
+[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]

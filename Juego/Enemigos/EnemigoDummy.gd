@@ -9,7 +9,7 @@ onready var colision:CollisionShape2D = $Area2D/Colision
 ##Atributos
 var puntos_vida: float = 100.0
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$CanionBase.set_esta_disparando(true)
 
 func _on_Area2D_body_entered(body: Node) -> void:

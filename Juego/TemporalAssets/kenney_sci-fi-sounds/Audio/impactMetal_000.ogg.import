@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/impactMetal_000.ogg-c3a90037d202add548e96bd9cae0609e.oggstr"
+
+[deps]
+
+source_file="res://Juego/TemporalAssets/kenney_sci-fi-sounds/Audio/impactMetal_000.ogg"
+dest_files=[ "res://.import/impactMetal_000.ogg-c3a90037d202add548e96bd9cae0609e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

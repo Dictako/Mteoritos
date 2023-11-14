@@ -6,20 +6,19 @@ onready var animacion: AnimationPlayer = $Animation
 onready var colision:CollisionShape2D = $Colisonador
 
 ##Atributos Export
-export var energia: float = 3
+export var energia: float = 3.0
 export var radio_desgaste: float = -1.6
 
 ##Atributos
 var esta_activo:bool = false setget ,get_esta_activo
+var energia_original: float
 
 #Metodos
 func _process(delta: float) -> void:
-	energia += radio_desgaste * delta
-	
-	if energia <= 0.0:
-		desactivar()
+	controlar_energia(radio_desgaste * delta)
 
 func _ready() -> void:
+	energia_original = energia
 	set_process(false)
 	controlar_colisionador(true)
 
@@ -31,6 +30,14 @@ func get_esta_activo() -> bool:
 ##Metodos Customs
 func controlar_colisionador(esta_desactivado:bool) -> void:
 	colision.set_deferred("disabled", esta_desactivado)
+
+
+func controlar_energia(consumo:float) -> void:
+	energia += consumo
+	if energia > energia_original:
+		energia = energia_original
+	elif energia <= 0.0:
+		desactivar()
 	
 func activar() -> void:
 	if energia <= 0.0:	

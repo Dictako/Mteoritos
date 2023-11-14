@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Vacio_sfx.ogg-cd1119bbace9ff0514c98aa71b58c264.oggstr"
+
+[deps]
+
+source_file="res://Juego/Estacion Espacial/Vacio_sfx.ogg"
+dest_files=[ "res://.import/Vacio_sfx.ogg-cd1119bbace9ff0514c98aa71b58c264.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

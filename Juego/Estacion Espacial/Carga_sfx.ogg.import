@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Carga_sfx.ogg-ad3253fefcf2584ede7b8f543ad99a5c.oggstr"
+
+[deps]
+
+source_file="res://Juego/Estacion Espacial/Carga_sfx.ogg"
+dest_files=[ "res://.import/Carga_sfx.ogg-ad3253fefcf2584ede7b8f543ad99a5c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
