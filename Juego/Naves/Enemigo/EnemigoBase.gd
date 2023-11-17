@@ -3,6 +3,7 @@ extends NaveBase
 
 ##Atributos
 var player_objetivo:Player = null
+var dir_player:Vector2
 
 ##Atributos export
 export var nave_destruida: bool
@@ -13,12 +14,12 @@ func _ready() -> void:
 	#Temporal
 	$CanionBase.set_esta_disparando(true)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	pass
 ##Metodos customs
 func rotar_hacia_player() -> void:
 	if player_objetivo:
-		var dir_player: Vector2 = player_objetivo.global_position - global_position
+		dir_player = player_objetivo.global_position - global_position
 		rotation = dir_player.angle()
 
 func _on_vae_destruida(nave:NaveBase, _posicion, _explosiones) -> void:

@@ -5,6 +5,7 @@ extends Node2D
 onready var contenedor_disparos: Node
 onready var contenedor_mteoritos: Node
 onready var contenedor_sector_mteoritos: Node
+onready var contenedor_enemigo: Node
 onready var camara_nivel:Camera2D = $CamaraNivel
 onready var camara_player:Camera2D = $Player/CamaraPlayer
 
@@ -13,15 +14,18 @@ export var explosion:PackedScene = null
 export var mteorito: PackedScene = null
 export var explosion_mteorito: PackedScene = null
 export var sector_mteoritos: PackedScene = null
+export var enemigo_interceptor: PackedScene = null
 export var tiempo_transcision_camara: float = 1.2
-
 
 ##Atributos
 var mteoritos_restantes = 0
+var player:Player = null
+
 ##Metodos
 func _ready() -> void:
 	conectar_seniales()
 	crear_contededores()
+	player = DatosJuegos.get_player_actual()
 	
 	
 
@@ -47,7 +51,11 @@ func crear_contededores() -> void:
 	contenedor_sector_mteoritos = Node.new()
 	contenedor_sector_mteoritos.name = "ContenedorSectorMteoritos"
 	add_child(contenedor_sector_mteoritos)
-
+	
+	contenedor_enemigo = Node.new()
+	contenedor_enemigo.name = "ContenedorEnemigo"
+	add_child(contenedor_enemigo)
+	
 func _on_disparando(proyectil: Proyectil) -> void:
 	contenedor_disparos.add_child(proyectil)
 	
@@ -105,6 +113,16 @@ func crear_sector_mteorito(centro_camara:Vector2, numero_peliro:int) -> void:
 		camara_nivel,
 		tiempo_transcision_camara * 10
 		)
+
+func crear_sector_enemigo(num_enemigos:int) -> void:
+	for _i in range(num_enemigos):
+		var new_interceptor:Interceptor = enemigo_interceptor.instance()
+		var spaw_pos: Vector2 = crear_posicion_aleatoria(1000.0, 800.0)
+		new_interceptor.global_position = player.global_position + spaw_pos
+		contenedor_enemigo.add_child(new_interceptor)
+
+
+
 func controlar_mteoritos_restantes() -> void:
 	mteoritos_restantes -= 1
 	if mteoritos_restantes == 0:
@@ -124,7 +142,7 @@ func _on_nave_sector_peligro(centrocam:Vector2, tipo_peligro:String, cant_peligr
 	if tipo_peligro == "Mteorito":
 		crear_sector_mteorito(centrocam, cant_peligro)
 	elif tipo_peligro == "Enemigo":
-		pass
+		crear_sector_enemigo(cant_peligro)
 
 func crear_posicion_aleatoria(rango_horizontal:float, rango_vertical:float) -> Vector2:
 	randomize()
