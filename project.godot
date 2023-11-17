@@ -29,7 +29,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Enemigos/EnemigoDummy.gd"
 }, {
-"base": "Node",
+"base": "NaveBase",
 "class": "EnemigoBase",
 "language": "GDScript",
 "path": "res://Juego/Naves/Enemigo/EnemigoBase.gd"
@@ -135,6 +135,7 @@ config/icon="res://Icono_juego.png"
 [autoload]
 
 Eventos="*res://Autoloads/Eventos.gd"
+DatosJuegos="*res://Autoloads/DatosJuegos.gd"
 
 [debug]
 

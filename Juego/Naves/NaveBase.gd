@@ -53,8 +53,8 @@ func recibir_danio(danio: int) -> void:
 		me_muero()
 	indicador_danio.play()
 
-##Señales Internas
 
+##Señales Internas
 func _on_AnimacionPersonaje_animation_finished(anim_name: String) -> void:
 	if anim_name == "Spawn":
 		controaldor_de_estados(ESTADO.VIVO)
@@ -64,4 +64,5 @@ func _on_Player_body_entered(body: Node) -> void:
 	if body is Mteorito:
 		body.destruirse()
 		me_muero()
+
 
