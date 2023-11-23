@@ -49,7 +49,6 @@ energia = 6.0
 radio_energia_entregada = 0.05
 
 [node name="CamaraNivel" parent="." instance=ExtResource( 10 )]
-position = Vector2( 969.744, 537.621 )
 
 [node name="TweenCamara" type="Tween" parent="."]
 

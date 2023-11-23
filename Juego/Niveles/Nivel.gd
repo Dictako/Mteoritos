@@ -38,6 +38,7 @@ func conectar_seniales() -> void:
 	Eventos.connect("mteorito_destruido", self, "_on_explosion_mteorito")
 	Eventos.connect("nave_en_sector_peligro", self, "_on_nave_sector_peligro")
 	Eventos.connect("nave_destruida", self, "_on_nave_destruida")
+	Eventos.connect("base_destruida", self, "_on_base_destruida")
 	
 func crear_contededores() -> void:
 	contenedor_disparos = Node.new()
@@ -74,6 +75,7 @@ func _on_nave_destruida(nave: Player, posicion: Vector2, num_explosiones: int) -
 			tiempo_transcision_camara
 		)
 	
+		crear_explosion(posicion, num_explosiones, 0.6, Vector2(100.0, 50.0))
 	
 	for _i in range(num_explosiones):
 		var new_explosion: Node2D = explosion.instance()
@@ -99,6 +101,27 @@ func _on_explosion_mteorito(pos:Vector2) -> void:
 	add_child(new_explosion_mteorito)
 	
 	controlar_mteoritos_restantes()
+
+func _on_base_destruida(pos_partes: Array) -> void:
+	for posicion in pos_partes:
+		crear_explosion(posicion, 1)
+		yield(get_tree().create_timer(0.5), "timeout")
+		
+
+func crear_explosion(
+		posicion: Vector2,
+		numero: int,
+		intervalo:float = 0.0,
+		rangos_aleatorios: Vector2 = Vector2(0.0, 0.0)
+	) -> void:
+		for _i in range(numero):
+			var new_explosion: Node2D = explosion.instance()
+			new_explosion.global_position = posicion + crear_posicion_aleatoria(
+				rangos_aleatorios.x,
+				rangos_aleatorios.y
+			)
+			add_child(new_explosion)
+			yield(get_tree().create_timer(intervalo), "timeout")
 
 func crear_sector_mteorito(centro_camara:Vector2, numero_peliro:int) -> void: 
 	mteoritos_restantes = numero_peliro

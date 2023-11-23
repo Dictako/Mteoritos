@@ -149,6 +149,7 @@ scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
 
 [node name="Sprite" parent="." index="1"]
+visible = false
 modulate = Color( 1, 0.317647, 0.317647, 0 )
 position = Vector2( 0, 0 )
 rotation = 1.5708
@@ -171,6 +172,7 @@ position = Vector2( 38, 30 )
 position = Vector2( 38, -30 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+autoplay = "Spawn"
 anims/Spawn = SubResource( 3 )
 anims/default = SubResource( 4 )
 

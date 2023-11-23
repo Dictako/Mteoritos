@@ -5,7 +5,7 @@ extends EnemigoBase
 enum ESTADO_IA {IDLE, ATACANDOQ, ATACANDOP, PERSECUCION}
 
 #Atributos export
-export var potencia_maxima: float = 800.0
+export var potencia_maxima: float = 8.0
 
 #Atributos
 var estado_ia_actual: int = ESTADO_IA.IDLE
@@ -42,14 +42,14 @@ func controlar_estado(nuevo_estado: int) -> void:
 
 
 ##Señales Internas
-func _on_AreaDectectarEnemigo_body_entered(body: Node) -> void:
+func _on_AreaDectectarEnemigo_body_entered(_body: Node) -> void:
 	controlar_estado(ESTADO_IA.ATACANDOQ)
 
-func _on_AreaDectectarEnemigo_body_exited(body: Node) -> void:
+func _on_AreaDectectarEnemigo_body_exited(_body: Node) -> void:
 	controlar_estado(ESTADO_IA.ATACANDOP)
 
-func _on_AreaDisparo_body_entered(body: Node) -> void:
+func _on_AreaDisparo_body_entered(_body: Node) -> void:
 	controlar_estado(ESTADO_IA.ATACANDOP)
 
-func _on_AreaDisparo_body_exited(body: Node) -> void:
+func _on_AreaDisparo_body_exited(_body: Node) -> void:
 	controlar_estado(ESTADO_IA.PERSECUCION)
