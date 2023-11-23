@@ -2,7 +2,7 @@ class_name CamaraJuego
 extends Camera2D
 
 ##Atributos onready
-onready var tween_zoom:Tween = $TweenZoom
+onready var tween_zoom: Tween = $TweenZoom
 
 ##Atributos
 var zoom_original: Vector2

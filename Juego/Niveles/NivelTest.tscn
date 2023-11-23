@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Juego/Naves/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Juego/Peligros/SectorDePeligro.tscn" type="PackedScene" id=9]
 [ext_resource path="res://CamaraNivel.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Juego/Estacion Espacial/EstacionRecarga.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Juego/Naves/Enemigo/EnemigoInterceptor.tscn" type="PackedScene" id=12]
 
 [node name="NivelTest" type="Node2D"]
 rotation = -0.00604949
@@ -19,6 +20,7 @@ explosion = ExtResource( 4 )
 mteorito = ExtResource( 6 )
 explosion_mteorito = ExtResource( 8 )
 sector_mteoritos = ExtResource( 7 )
+enemigo_interceptor = ExtResource( 12 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
@@ -29,12 +31,19 @@ position = Vector2( 321.512, 526.749 )
 [node name="TiggerLluviaMteoritos" type="Node" parent="."]
 
 [node name="SectorDePeligro" parent="TiggerLluviaMteoritos" instance=ExtResource( 9 )]
-position = Vector2( 981.553, 523.302 )
+position = Vector2( 3240.87, 566.065 )
+
+[node name="TiggerInterceptores" type="Node" parent="."]
+
+[node name="SectorDePeligro" parent="TiggerInterceptores" instance=ExtResource( 9 )]
+position = Vector2( 1265.45, 591.782 )
+tipo_peligro = "Enemigo"
+numero_peligros = 2
 
 [node name="ContenedorEstaciones" type="Node" parent="."]
 
 [node name="EstacionRecarga" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
-position = Vector2( 616.596, 582.655 )
+position = Vector2( 3652.78, 1174.21 )
 rotation = -0.00604949
 energia = 6.0
 radio_energia_entregada = 0.05
@@ -162,7 +171,7 @@ z_as_relative = false
 texture = ExtResource( 5 )
 
 [node name="Negro15" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 697.025, 452.353 )
+position = Vector2( 691.032, 458.346 )
 rotation = -0.00604949
 scale = Vector2( 1000, 1000 )
 z_index = -100

@@ -4,6 +4,7 @@ extends RigidBody2D
 
 ##Atributos export
 export var vida_maxima: float = 100.0
+export var cant_explosiones: int = 3
 
 
 ##Atributos simples
@@ -34,7 +35,7 @@ func controaldor_de_estados(estado:int) -> void:
 		ESTADO.MUERTO:
 			colisionador_cuerpo.set_deferred("disabled", true)
 			Eventos.emit_signal("destruir", global_position)
-			Eventos.emit_signal("nave_destruida", self, global_position, 3)
+			Eventos.emit_signal("nave_destruida", self, global_position, cant_explosiones)
 			queue_free()
 			canion.set_puede_disparar(false)
 		ESTADO.INVENCIBLE:
@@ -53,8 +54,8 @@ func recibir_danio(danio: int) -> void:
 		me_muero()
 	indicador_danio.play()
 
-##Señales Internas
 
+##Señales Internas
 func _on_AnimacionPersonaje_animation_finished(anim_name: String) -> void:
 	if anim_name == "Spawn":
 		controaldor_de_estados(ESTADO.VIVO)
@@ -64,4 +65,5 @@ func _on_Player_body_entered(body: Node) -> void:
 	if body is Mteorito:
 		body.destruirse()
 		me_muero()
+
 
