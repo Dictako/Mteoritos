@@ -39,7 +39,9 @@ func conectar_seniales() -> void:
 	Eventos.connect("nave_en_sector_peligro", self, "_on_nave_sector_peligro")
 	Eventos.connect("nave_destruida", self, "_on_nave_destruida")
 	Eventos.connect("base_destruida", self, "_on_base_destruida")
-	
+	Eventos.connect("spawn_orbital", self, "_on_spawn_orbital")
+
+
 func crear_contededores() -> void:
 	contenedor_disparos = Node.new()
 	contenedor_disparos.name = "ContenedorDisparo"
@@ -107,6 +109,9 @@ func _on_base_destruida(pos_partes: Array) -> void:
 		crear_explosion(posicion, 1)
 		yield(get_tree().create_timer(0.5), "timeout")
 		
+
+func _on_spawn_orbital(enemigo:EnemigoOrbital) -> void:
+	contenedor_enemigo.add_child(enemigo)
 
 func crear_explosion(
 		posicion: Vector2,
