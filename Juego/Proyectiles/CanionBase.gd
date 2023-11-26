@@ -29,10 +29,10 @@ func set_puede_disparar(habilitado:bool) -> void:
 func _ready() -> void:
 	almacenar_puntos_disparos()
 	timer_enfriamiento.wait_time = cadencia_disparo
-	
-# warning-ignore:unused_argument
+
+
 func _process(delta: float) -> void:
-	if esta_disparando and esta_enfriado:
+	if esta_disparando and esta_enfriado and puede_disparar:
 		disparar()
 
 ##Metodos Custom

@@ -29,6 +29,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Proyectiles/CanionBase.gd"
 }, {
+"base": "NinePatchRect",
+"class": "ContenedorInformacion",
+"language": "GDScript",
+"path": "res://Juego/UI/ContenedorInformacion.gd"
+}, {
+"base": "ContenedorInformacion",
+"class": "ContenedorInformacionEnergia",
+"language": "GDScript",
+"path": "res://Juego/UI/ContenedorInformacionEnergia.gd"
+}, {
 "base": "Node2D",
 "class": "Enemigo",
 "language": "GDScript",
@@ -110,6 +120,11 @@ _global_script_classes=[ {
 "path": "res://Juego/Proyectiles/ProyectilBase.gd"
 }, {
 "base": "Node2D",
+"class": "ReleDeMassa",
+"language": "GDScript",
+"path": "res://Juego/ReleMassa/ReleMassa.gd"
+}, {
+"base": "Node2D",
 "class": "SectorMteorito",
 "language": "GDScript",
 "path": "res://Juego/Mteoritos/SectorMteorito.gd"
@@ -119,6 +134,8 @@ _global_script_class_icons={
 "CamaraJuego": "",
 "CamaraPlayer": "",
 "Canion": "",
+"ContenedorInformacion": "",
+"ContenedorInformacionEnergia": "",
 "Enemigo": "",
 "EnemigoBase": "",
 "EnemigoOrbital": "",
@@ -135,6 +152,7 @@ _global_script_class_icons={
 "Nivel": "",
 "Player": "",
 "Proyectil": "",
+"ReleDeMassa": "",
 "SectorMteorito": ""
 }
 

@@ -92,6 +92,12 @@ func esta_input_activo() -> bool:
 		
 	return true
 
+func desactivar_controles() -> void:
+	controaldor_de_estados(ESTADO.SPAWN)
+	empuje = Vector2.ZERO
+	motor_ruido.sonido_off()
+	laser.set_is_casting(false)
+
 func recibir_danio(_danio: int) -> void:
 	animacion.play("Recibir_danio")
 
