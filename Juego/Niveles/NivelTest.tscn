@@ -1,26 +1,38 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Juego/Naves/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=2]
 [ext_resource path="res://default_env.tres" type="Environment" id=3]
-[ext_resource path="res://Juego/Explosiones/Explosion.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Juego/UI/Hud.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Juego/Fondos/Negro.png" type="Texture" id=5]
-[ext_resource path="res://Juego/Mteoritos/Mteorito.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Juego/Mteoritos/SectorMteorito.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Juego/Explosiones/ExplosionMteorito.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Juego/Musica/POL-chamber-of-secrets-short.wav" type="AudioStream" id=6]
+[ext_resource path="res://Juego/Musica/MusicaNivel.wav" type="AudioStream" id=7]
+[ext_resource path="res://Juego/Niveles/Fondos/StarFieldBackground.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Juego/Peligros/SectorDePeligro.tscn" type="PackedScene" id=9]
 [ext_resource path="res://CamaraNivel.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Juego/Estacion Espacial/EstacionRecarga.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Juego/Naves/Enemigo/EnemigoInterceptor.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Juego/ReleMassa/ReleMassa.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Juego/Explosiones/Explosion.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Juego/Naves/Enemigo/EnemigoInterceptor.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Juego/Mteoritos/SectorMteorito.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Juego/Mteoritos/Mteorito.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Juego/Explosiones/ExplosionMteorito.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Juego/Enemigos/EnemigoDummy.tscn" type="PackedScene" id=19]
 
 [node name="NivelTest" type="Node2D"]
 rotation = -0.00604949
 script = ExtResource( 2 )
-explosion = ExtResource( 4 )
-mteorito = ExtResource( 6 )
-explosion_mteorito = ExtResource( 8 )
-sector_mteoritos = ExtResource( 7 )
-enemigo_interceptor = ExtResource( 12 )
+explosion = ExtResource( 14 )
+mteorito = ExtResource( 17 )
+explosion_mteorito = ExtResource( 18 )
+sector_mteoritos = ExtResource( 16 )
+enemigo_interceptor = ExtResource( 15 )
+rele_de_massa = ExtResource( 12 )
+tiempo_limite = 60
+musica_nivel = ExtResource( 7 )
+musica_peligro = ExtResource( 6 )
+
+[node name="Hud" parent="." instance=ExtResource( 4 )]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
@@ -45,8 +57,8 @@ numero_peligros = 2
 [node name="EstacionRecarga" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
 position = Vector2( 3652.78, 1174.21 )
 rotation = -0.00604949
-energia = 6.0
-radio_energia_entregada = 0.05
+
+[node name="ContenedorBaseEnemiga" type="Node" parent="."]
 
 [node name="CamaraNivel" parent="." instance=ExtResource( 10 )]
 
@@ -171,10 +183,21 @@ z_as_relative = false
 texture = ExtResource( 5 )
 
 [node name="Negro15" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 691.032, 458.346 )
+position = Vector2( 697.759, 438.165 )
 rotation = -0.00604949
 scale = Vector2( 1000, 1000 )
 z_index = -100
 z_as_relative = false
 texture = ExtResource( 5 )
+
+[node name="RestartTimer" type="Timer" parent="."]
+
+[node name="ActualizadorTimer" type="Timer" parent="."]
+
+[node name="StarFieldBackground" parent="." instance=ExtResource( 8 )]
+
+[node name="EnemigoDummy" parent="." instance=ExtResource( 19 )]
+position = Vector2( 909.522, 414.351 )
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]
+[connection signal="timeout" from="RestartTimer" to="." method="_on_RestartTimer_timeout"]
+[connection signal="timeout" from="ActualizadorTimer" to="." method="_on_ActualizadorTimer_timeout"]

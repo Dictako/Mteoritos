@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Juego/Estacion Espacial/parte_estacion1.png" type="Texture" id=1]
 [ext_resource path="res://Juego/Estacion Espacial/parte_estacion4.png" type="Texture" id=2]
@@ -7,24 +7,27 @@
 [ext_resource path="res://Juego/Estacion Espacial/dotBlanco.png" type="Texture" id=5]
 [ext_resource path="res://Juego/Estacion Espacial/BaseEnemiga.gd" type="Script" id=6]
 [ext_resource path="res://Juego/Enemigos/Area2D.gd" type="Script" id=7]
-
-[sub_resource type="CapsuleShape2D" id=5]
-radius = 68.2342
-height = 431.746
-
-[sub_resource type="CapsuleShape2D" id=6]
-radius = 26.1652
-height = 114.786
-
-[sub_resource type="CapsuleShape2D" id=7]
-radius = 22.167
-height = 44.6595
+[ext_resource path="res://Juego/Naves/Enemigo/EnemigoOrbital.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Juego/Estacion Espacial/PosicionesSpawn.gd" type="Script" id=9]
+[ext_resource path="res://Juego/Estacion Espacial/RutaEnemiga.gd" type="Script" id=10]
+[ext_resource path="res://Juego/UI/BarraSalud.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 399.696
 
-[sub_resource type="Animation" id=2]
-resource_name = "default"
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 68.2342
+height = 431.746
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 26.1652
+height = 114.786
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 22.167
+height = 44.6595
+
+[sub_resource type="Animation" id=5]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/parte_estacion4:position")
@@ -123,11 +126,10 @@ tracks/7/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "rotacion_anti_horario"
+[sub_resource type="Animation" id=6]
 length = 5.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("AraeColision/AreaRecarga/SpriteZonaRecarga:modulate")
+tracks/0/path = NodePath("AreaRecarga/SpriteZonaRecarga:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -151,11 +153,10 @@ tracks/1/keys = {
 "values": [ 0.0, -360.0 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "rotacion_horario"
+[sub_resource type="Animation" id=7]
 length = 5.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("AraeColision/AreaRecarga/SpriteZonaRecarga:modulate")
+tracks/0/path = NodePath("AreaRecarga/SpriteZonaRecarga:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -179,8 +180,25 @@ tracks/1/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
-[node name="BaseEnemiga" type="Node2D"]
+[sub_resource type="Curve2D" id=8]
+_data = {
+"points": PoolVector2Array( 34.3643, -13.3484, -34.3643, 13.3484, -363.614, -57.4853, -33.6451, -11.3265, 33.6451, 11.3265, -337.552, -143.696, -29.9067, -9.43874, 29.9067, 9.43874, -299.754, -224.331, 13.0842, 16.9897, -13.0842, -16.9897, -226.679, -302.446, -11.215, -35.8672, 11.215, 35.8672, -115.806, -350.323, -105.714, 0, 105.714, 0, -2.41296, -365.442, -48.5984, -3.7755, 48.5984, 3.7755, 138.698, -352.843, -62.2957, -41.5305, 62.2957, 41.5305, 206.734, -317.565, -7.55099, -13.2142, 7.55099, 13.2142, 300.874, -229.27, -42.9909, -111.377, 42.9909, 111.377, 338.629, -180.189, -16.8225, -50.9692, 16.8225, 50.9692, 376.384, -95.2402, 13.4743, -115.153, -13.4743, 115.153, 363.169, 70.8817, 0, -26.4285, 0, 26.4285, 332.966, 169.045, 29.9067, -5.66325, -29.9067, 5.66325, 279.809, 249.399, 59.8135, 0, -59.8135, 0, 223.144, 293.505, 17.1821, -46.7194, -17.1821, 46.7194, 142.418, 343.959, 18.5038, -52.0588, -18.5038, 52.0588, 11.2385, 367.504, -18.5038, 14.6832, 18.5038, -14.6832, -103.123, 350.686, 22.469, -6.6742, -22.469, 6.6742, -214.122, 317.05, 28.0376, 58.5202, -28.0376, -58.5202, -309.519, 225.677, 38.3294, -2.66968, -38.3294, 2.66968, -355.392, 128.689, -52.8681, -26.6968, 52.8681, 26.6968, -374.94, 6.69821, -13.217, 42.7149, 13.217, -42.7149, -363.725, -61.2608 )
+}
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.698039, 0.0980392, 0.564706, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+
+[node name="BaseEnemiga" type="Node2D" groups=[
+"minimapa",
+]]
 script = ExtResource( 6 )
+orbital = ExtResource( 8 )
 
 [node name="Sprites" type="Node2D" parent="."]
 rotation = 6.28319
@@ -202,46 +220,78 @@ texture = ExtResource( 1 )
 position = Vector2( -4, -5 )
 texture = ExtResource( 4 )
 
+[node name="AreaRecarga" type="Area2D" parent="."]
+space_override = 1
+gravity_point = true
+gravity = 1000.0
+collision_layer = 129
+
+[node name="ColisionRecarga" type="CollisionShape2D" parent="AreaRecarga"]
+shape = SubResource( 1 )
+
+[node name="SpriteZonaRecarga" type="Sprite" parent="AreaRecarga"]
+modulate = Color( 0.223529, 0.32549, 0.960784, 0 )
+scale = Vector2( 30.6667, 27.8333 )
+z_as_relative = false
+texture = ExtResource( 5 )
+
 [node name="AraeColision" type="Area2D" parent="."]
 collision_layer = 257
 collision_mask = 27
 script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AraeColision"]
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="AraeColision"]
 position = Vector2( 152.172, -104.117 )
 rotation = 1.5708
-shape = SubResource( 6 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="AraeColision"]
 position = Vector2( -113.363, -102.768 )
 rotation = 1.5708
-shape = SubResource( 7 )
-
-[node name="AreaRecarga" type="Area2D" parent="AraeColision"]
-visible = false
-space_override = 1
-gravity_point = true
-gravity = 1000.0
-collision_layer = 129
-
-[node name="ColisionRecarga" type="CollisionShape2D" parent="AraeColision/AreaRecarga"]
-shape = SubResource( 1 )
-
-[node name="SpriteZonaRecarga" type="Sprite" parent="AraeColision/AreaRecarga"]
-modulate = Color( 0.223529, 0.32549, 0.960784, 0 )
-scale = Vector2( 30.6667, 27.8333 )
-z_as_relative = false
-texture = ExtResource( 5 )
+shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/default = SubResource( 2 )
-anims/rotacion_anti_horario = SubResource( 3 )
-anims/rotacion_horario = SubResource( 4 )
+anims/default = SubResource( 5 )
+anims/rotacion_anti_horario = SubResource( 6 )
+anims/rotacion_horario = SubResource( 7 )
 
 [node name="ImpactoSfx" type="AudioStreamPlayer" parent="."]
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="PosicionesSpawn" type="Node2D" parent="."]
+script = ExtResource( 9 )
+
+[node name="Norte" type="Position2D" parent="PosicionesSpawn"]
+position = Vector2( 0, -500 )
+
+[node name="Sur" type="Position2D" parent="PosicionesSpawn"]
+position = Vector2( 0, 500 )
+
+[node name="Este" type="Position2D" parent="PosicionesSpawn"]
+position = Vector2( 500, -100 )
+
+[node name="Oeste" type="Position2D" parent="PosicionesSpawn"]
+position = Vector2( -500, -100 )
+
+[node name="RutaEnemiga" type="Path2D" parent="."]
+position = Vector2( 3.72659, 3.77552 )
+scale = Vector2( 1.00994, 1 )
+curve = SubResource( 8 )
+script = ExtResource( 10 )
+
+[node name="TimerSpawnearEnemigos" type="Timer" parent="."]
+
+[node name="BarraSalud" parent="." instance=ExtResource( 11 )]
+margin_left = -46.9966
+margin_top = -304.211
+margin_right = 47.0034
+margin_bottom = -293.211
+rect_rotation = 0.0
+custom_styles/fg = SubResource( 9 )
 [connection signal="body_entered" from="AraeColision" to="." method="_on_AraeColision_body_entered"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="timeout" from="TimerSpawnearEnemigos" to="." method="_on_TimerSpawnearEnemigos_timeout"]

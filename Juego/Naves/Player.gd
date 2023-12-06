@@ -39,12 +39,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 	if event.is_action_pressed("Mover_adelante"):
 		estela.set_max_points(estela_maxima)
-		motor_ruido.sonido_on()
 	elif event.is_action_pressed("Mover_atras"):
 		estela.set_max_points(0)
-		motor_ruido.sonido_off()
-		
-	if event.is_action_released("Mover_adelante"):
+	
+	
+	if event.is_action_released("Mover_adelante") or event.is_action_pressed("Mover_atras"):
 		motor_ruido.sonido_off()
 	#Control Escudo
 	if event.is_action_pressed("activar_desactivar_escudo") and not escudo.get_esta_activo():
@@ -67,8 +66,10 @@ func player_input() -> void:
 	empuje = Vector2.ZERO
 	if Input.is_action_pressed("Mover_adelante"):
 		empuje = Vector2(potencia_motor, 0)
+		motor_ruido.sonido_on()
 	elif Input.is_action_pressed("Mover_atras"):
 		empuje = Vector2(-potencia_motor, 0)
+		motor_ruido.sonido_on()
 	
 	#Rotacion
 	dir_rotacion = 0
@@ -91,6 +92,12 @@ func esta_input_activo() -> bool:
 		return false
 		
 	return true
+
+func desactivar_controles() -> void:
+	controaldor_de_estados(ESTADO.SPAWN)
+	empuje = Vector2.ZERO
+	motor_ruido.sonido_off()
+	laser.set_is_casting(false)
 
 func recibir_danio(_danio: int) -> void:
 	animacion.play("Recibir_danio")

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Activadosfx.ogg-c0227e0e015c0e21425894c7d6c90725.oggstr"
+
+[deps]
+
+source_file="res://Juego/ReleMassa/Activadosfx.ogg"
+dest_files=[ "res://.import/Activadosfx.ogg-c0227e0e015c0e21425894c7d6c90725.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
