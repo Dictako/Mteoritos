@@ -17,7 +17,7 @@ func _ready() -> void:
 ##Metodos Customs
 func conectar_seniales() -> void:
 	Eventos.connect("nivel_iniciado", self, "fade_out")
-	Eventos.connect("nivel_termimado", self, "fade_in")
+	Eventos.connect("nivel_terminado", self, "fade_in")
 	Eventos.connect("deteccion_zona_recarga", self, "_on_deteccion_zona_recarga")
 	Eventos.connect("cambio_numero_mteoritos", self, "_on_actualizar_info_mteoritos")
 	Eventos.connect("actualizar_tiempo_restante", self, "_on_actualizar_info_tiempo")
@@ -68,7 +68,7 @@ func _on_actualizar_energia_escudo(energia_max:float, energia_actual:float) -> v
 	info_escudo.mostrar_suavizado()
 	info_escudo.actualizar_energia(energia_max, energia_actual)
 
-func _on_nave_destruida(nave:NaveBase, _posiscion, _explosiones) -> void:
+func _on_nave_destruida(_nave:NaveBase, _posiscion, _explosiones) -> void:
 	get_tree().call_group("contenedor_info", "set_esta_activo", false)
 	get_tree().call_group("contenedor_info", "ocultar")
 

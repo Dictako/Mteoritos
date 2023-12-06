@@ -40,10 +40,6 @@ func crear(pos:Vector2, duenia:Node2D, ruta_duenia:Path2D) -> void:
 	path_follow = PathFollow2D.new()
 	ruta.add_child(path_follow)
 
-##Señales Internas
-func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
-	pass # Replace with function body.
-
 ##Señales externas
 func _on_base_destruida(base:Node2D, _pos) -> void:
 	if base == estacion_duenia:

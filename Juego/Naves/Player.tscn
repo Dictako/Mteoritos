@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Juego/Naves/PosicionInicialEstela.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Naves/NaveBase.tscn" type="PackedScene" id=2]
@@ -13,7 +13,27 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 40.9239
 
-[node name="Player" instance=ExtResource( 2 )]
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.121569, 0.576471, 1, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 0, 0, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+
+[node name="Player" groups=[
+"minimapa",
+] instance=ExtResource( 2 )]
 z_index = 50
 z_as_relative = false
 collision_layer = 1
@@ -34,6 +54,10 @@ texture = ExtResource( 4 )
 [node name="ColisonadorCuerpo" parent="." index="1"]
 shape = SubResource( 1 )
 
+[node name="CanionBase" parent="." index="2"]
+velocidad_proyectil = 1000
+danio_proyectil = 5
+
 [node name="PosicionInicialEstela" parent="." index="4" instance=ExtResource( 1 )]
 
 [node name="Escudo" parent="." index="5" instance=ExtResource( 9 )]
@@ -47,6 +71,10 @@ position = Vector2( 1.19055, 0 )
 position = Vector2( 42.4743, 0 )
 
 [node name="MotorRuido" parent="." index="9" instance=ExtResource( 7 )]
+
+[node name="BarraSalud" parent="." index="10"]
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
 [connection signal="animation_finished" from="AnimacionPersonaje" to="." method="_on_AnimacionPersonaje_animation_finished"]
 
 [editable path="CanionBase"]

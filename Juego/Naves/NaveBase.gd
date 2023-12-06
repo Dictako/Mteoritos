@@ -17,11 +17,13 @@ enum ESTADO {SPAWN,VIVO,MUERTO,INVENCIBLE}
 onready var colisionador_cuerpo:CollisionShape2D = $ColisonadorCuerpo
 onready var indicador_danio:AudioStreamPlayer = $IndicadorDanio
 onready var canion:Canion = $CanionBase
-
+onready var barra_salud: ProgressBar = $BarraSalud
 ##Metodos
 func _ready() -> void:
 	controaldor_de_estados(estado_actual)
-
+	barra_salud.max_value = vida_maxima
+	barra_salud.value = vida_maxima
+		
 
 ##Metodos Custom	
 func controaldor_de_estados(estado:int) -> void:
@@ -53,6 +55,8 @@ func recibir_danio(danio: int) -> void:
 	if vida_maxima <= 0.0:
 		me_muero()
 	indicador_danio.play()
+	barra_salud.controlar_barra(vida_maxima, true)
+	barra_salud.value = vida_maxima
 
 
 ##Señales Internas

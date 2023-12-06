@@ -5,6 +5,7 @@
 [ext_resource path="res://Juego/Proyectiles/ProyectilPlayer.tscn" type="PackedScene" id=3]
 
 [node name="CanionBase" type="Node2D"]
+position = Vector2( 6.54065, 0 )
 script = ExtResource( 1 )
 proyectil = ExtResource( 3 )
 velocidad_proyectil = 500

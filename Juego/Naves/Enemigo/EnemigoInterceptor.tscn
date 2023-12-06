@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Juego/Naves/Enemigo/EnemigoBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Naves/Enemigo/EnemigoSpawn.png" type="Texture" id=2]
@@ -88,6 +88,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [ false, true, true ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("ColisonadorCuerpo:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -134,9 +146,26 @@ radius = 599.416
 [sub_resource type="CircleShape2D" id=6]
 radius = 607.363
 
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 1, 0.921569, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 1, 0, 0, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+
 [node name="EnemigoInterceptor" instance=ExtResource( 1 )]
 z_index = 40
-z_as_relative = false
 collision_layer = 2
 collision_mask = 13
 physics_material_override = SubResource( 1 )
@@ -178,6 +207,7 @@ anims/Spawn = SubResource( 3 )
 anims/default = SubResource( 4 )
 
 [node name="AreaDectectarEnemigo" type="Area2D" parent="." index="6"]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDectectarEnemigo" index="0"]
@@ -187,7 +217,16 @@ shape = SubResource( 5 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDisparo" index="0"]
+visible = false
 shape = SubResource( 6 )
+
+[node name="BarraSalud" parent="." index="8"]
+margin_left = -103.0
+margin_top = -56.5
+margin_right = 9.0
+margin_bottom = -44.5
+custom_styles/fg = SubResource( 7 )
+custom_styles/bg = SubResource( 8 )
 [connection signal="body_entered" from="AreaDectectarEnemigo" to="." method="_on_AreaDectectarEnemigo_body_entered"]
 [connection signal="body_exited" from="AreaDectectarEnemigo" to="." method="_on_AreaDectectarEnemigo_body_exited"]
 [connection signal="body_entered" from="AreaDisparo" to="." method="_on_AreaDisparo_body_entered"]

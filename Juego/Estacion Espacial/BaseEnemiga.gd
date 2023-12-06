@@ -11,26 +11,28 @@ export var intervalo_spawn:float = 0.8
 onready var impactos_sfx: AudioStreamPlayer = $ImpactoSfx
 onready var ruta_enemigo: Path2D = $RutaEnemiga
 onready var timer_spawn:Timer = $TimerSpawnearEnemigos
+onready var barra_salud:BarraSalud = $BarraSalud
 
 ##Atributos
 var esta_destruida: bool = false
 var posicion_spawn:Vector2 = Vector2.ZERO
 
+
 ##Metodos
 func _ready() -> void:
 	timer_spawn.wait_time = intervalo_spawn
+	barra_salud.set_valores(hit_points)
 	$AnimationPlayer.play(elegir_animacion_aletoria())
 
 
-# warning-ignore:unused_argument
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var player_objetivo:Player = DatosJuegos.get_player_actual()
 	if not player_objetivo:
 		pass
 	
 	var dir_player: Vector2 = player_objetivo.global_position - global_position
 	var angulo_player: float = rad2deg(dir_player.angle())
-
+	
 ##Metodos Customs
 func elegir_animacion_aletoria() -> String:
 	randomize()
@@ -46,7 +48,7 @@ func recibir_danio(danio: int) -> void:
 	if hit_points <= 0.0 and not esta_destruida:
 		esta_destruida = true
 		queue_free()
-	
+	barra_salud.set_hit_points_actual(hit_points)
 	impactos_sfx.play()
 
 func destruir() -> void:
@@ -57,6 +59,7 @@ func destruir() -> void:
 		$Sprites/parte_estacion4.global_position
 	]
 	Eventos.emit_signal("base_destruida", self, posicion_partes)
+	Eventos.emit_signal("minimpa_objeto_destruido", self)
 	queue_free()
 	
 

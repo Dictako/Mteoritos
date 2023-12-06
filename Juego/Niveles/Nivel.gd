@@ -19,6 +19,10 @@ export var enemigo_interceptor: PackedScene = null
 export var tiempo_transcision_camara: float = 1.2
 export var rele_de_massa: PackedScene = null
 export var tiempo_limite:int = 10
+export var musica_nivel:AudioStream = null
+export var musica_peligro:AudioStream = null
+export (String, FILE, "*tscn") var prox_nivel = null
+
 
 
 ##Atributos
@@ -29,6 +33,8 @@ var player:Player = null
 ##Metodos
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	MusicaJuego.set_streams(musica_nivel, musica_peligro)
+	MusicaJuego.play_musica_nivel()
 	Eventos.emit_signal("nivel_iniciado")
 	Eventos.emit_signal("actualizar_tiempo_restante", tiempo_limite)
 	conectar_seniales()
@@ -48,7 +54,8 @@ func conectar_seniales() -> void:
 	Eventos.connect("nave_destruida", self, "_on_nave_destruida")
 	Eventos.connect("base_destruida", self, "_on_base_destruida")
 	Eventos.connect("spawn_orbital", self, "_on_spawn_orbital")
-
+	Eventos.connect("nivel_completado", self, "_on_nivel_completado")
+	
 func destruir_nivel() -> void:
 	crear_explosion(
 		player.global_position,
@@ -151,6 +158,11 @@ func _on_base_destruida(pos_partes: Array) -> void:
 func _on_spawn_orbital(enemigo:EnemigoOrbital) -> void:
 	contenedor_enemigo.add_child(enemigo)
 
+func _on_nivel_completado() -> void:
+	Eventos.emit_signal("nivel_terminado")
+	yield(get_tree().create_timer(1.0), "timeout")
+	get_tree().change_scene(prox_nivel)
+
 func crear_explosion(
 		posicion: Vector2,
 		numero: int,
@@ -167,6 +179,7 @@ func crear_explosion(
 			yield(get_tree().create_timer(intervalo), "timeout")
 
 func crear_sector_mteorito(centro_camara:Vector2, numero_peliro:int) -> void: 
+	MusicaJuego.transcision_musica()
 	mteoritos_restantes = numero_peliro
 	var new_sector_mteorito: SectorMteorito = sector_mteoritos.instance()
 	new_sector_mteorito.global_position = centro_camara
@@ -193,6 +206,7 @@ func controlar_mteoritos_restantes() -> void:
 	mteoritos_restantes -= 1
 	Eventos.emit_signal("cambio_numero_mteoritos", mteoritos_restantes)
 	if mteoritos_restantes == 0:
+		MusicaJuego.transcision_musica()
 		contenedor_sector_mteoritos.get_child(0).queue_free()
 		camara_player.set_puede_hacer_zoom(true)
 		var zoom_actual = camara_player.zoom

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Autoloads/MusicaJuego.gd" type="Script" id=1]
+[ext_resource path="res://Juego/Musica/MusicaMenu.wav" type="AudioStream" id=2]
+[ext_resource path="res://Juego/Musica/Botones.wav" type="AudioStream" id=3]
+
+[node name="MusicaJuego" type="Node"]
+script = ExtResource( 1 )
+
+[node name="MusicaNivel" type="AudioStreamPlayer" parent="."]
+bus = "Musica"
+
+[node name="MusicaPeligro" type="AudioStreamPlayer" parent="."]
+bus = "Musica"
+
+[node name="TweenMusicaOff" type="Tween" parent="."]
+
+[node name="TweenMusicaOn" type="Tween" parent="."]
+
+[node name="MusicaMenuPrincipal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+autoplay = true
+
+[node name="MenuBoton" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "Botones"
+[connection signal="tween_completed" from="TweenMusicaOff" to="." method="_on_TweenMusicaOff_tween_completed"]

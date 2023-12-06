@@ -27,7 +27,8 @@ func rotar_hacia_player() -> void:
 func _on_nave_destruida(nave:NaveBase, _posicion, _explosiones) -> void:
 	if nave is Player:
 		player_objetivo = null
-
+	if nave.is_in_group("minimapa"):
+		Eventos.emit_signal("minimpa_objeto_destruido", self)
 
 ##Señales Internas
 func _on_body_entered(body: Node) -> void:
